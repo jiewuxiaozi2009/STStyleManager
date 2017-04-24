@@ -1,0 +1,31 @@
+//
+//  STClassificationInfo.h
+//  STStyleManager
+//
+//  Created by Lorne Shi on 19/04/2017.
+//  Copyright © 2017 Lorne Shi. All rights reserved.
+//
+
+#import <JSONModel/JSONModel.h>
+
+@protocol STStyleInfo;
+@class STStyleInfo;
+
+@interface STClassificationInfo : JSONModel
+
+@property (nonatomic, readonly, copy) NSString *name;
+@property (nonatomic, copy) NSMutableArray<STStyleInfo> *styles;
+
++ (STClassificationInfo *)createClassificationWithName:(NSString *)classificationName;
+
+- (instancetype)initWithClassificationName:(NSString *)classificationName;
+
+- (NSArray *)allStyles;
+- (STStyleInfo *)styleAtIndex:(NSUInteger)index;
+- (void)addStyle:(STStyleInfo *)style;
+- (void)addStyle:(STStyleInfo *)style atIndex:(NSUInteger)index;
+- (void)deleteStyle:(STStyleInfo *)style;
+- (void)deleteStyleAtIndex:(NSUInteger)index;
+- (void)deleteAllStyles;
+
+@end
