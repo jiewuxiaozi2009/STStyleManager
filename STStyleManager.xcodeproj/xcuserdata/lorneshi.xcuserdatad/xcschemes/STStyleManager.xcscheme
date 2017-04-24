@@ -42,10 +42,6 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <PathRunnable
-         runnableDebuggingMode = "0"
-         FilePath = "/Users/lorneshi/Library/Developer/Xcode/DerivedData/StyleTransfer-gxteoznhvthvitcjgmwlofktnwpu/Build/Products/Debug/StyleTransfer.app">
-      </PathRunnable>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
