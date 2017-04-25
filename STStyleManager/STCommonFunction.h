@@ -15,5 +15,6 @@
 + (NSString *)styleModelFileDir:(BOOL)isCustomStyle;
 
 + (NSString *)styleResourceDir:(BOOL)isCustomStyle;
++ (NSString *)customStyleManagerFileDir;
 
 @end

@@ -28,6 +28,12 @@
     return styleModelFileDir;
 }
 
++ (NSString *)customStyleManagerFileDir {
+    NSString *styleResourceDir = [STCommonFunction styleResourceDir:YES];
+    NSString *customStyleManagerFileDir = [NSString stringWithFormat:@"%@/TemplateFile", styleResourceDir];
+    return customStyleManagerFileDir;
+}
+
 + (NSString *)styleResourceDir:(BOOL)isCustomStyle {
     NSString *rootDir = nil;
     if (isCustomStyle) {
