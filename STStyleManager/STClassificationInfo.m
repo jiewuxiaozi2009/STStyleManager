@@ -11,25 +11,17 @@
 @interface STClassificationInfo ()
 
 @property (nonatomic, copy) NSString *name;
+@property (nonatomic, copy) NSMutableArray<STStyleInfo> *styles;
 
 @end
 
 @implementation STClassificationInfo
 
-+ (STClassificationInfo *)createClassificationWithName:(NSString *)classificationName {
-    STClassificationInfo *classification = [[STClassificationInfo alloc] init];
-    [classification setName:classificationName];
-    NSMutableArray *stylesArr = [[NSMutableArray alloc] init];
-    [classification setStyles:(NSMutableArray<STStyleInfo> *)stylesArr];
-    
-    return classification;
-}
-
 - (instancetype)initWithClassificationName:(NSString *)classificationName {
     self = [super init];
     if (self) {
-        _styles = (NSMutableArray<STStyleInfo> *)[[NSMutableArray alloc] init];
-        _name = classificationName;
+        [self setStyles:(NSMutableArray<STStyleInfo> *)[[NSMutableArray alloc] init]];
+        [self setName:classificationName];
     }
     
     return self;
@@ -44,23 +36,33 @@
 }
 
 - (void)addStyle:(STStyleInfo *)style {
-    [_styles addObject:style];
+    NSMutableArray *tempStyles = [[NSMutableArray alloc] initWithArray:_styles];
+    [tempStyles addObject:style];
+    [self setStyles:(NSMutableArray<STStyleInfo> *)tempStyles];
 }
 
 - (void)addStyle:(STStyleInfo *)style atIndex:(NSUInteger)index {
-    [_styles insertObject:style atIndex:index];
+    NSMutableArray *tempStyles = [[NSMutableArray alloc] initWithArray:_styles];
+    [tempStyles insertObject:style atIndex:index];
+    [self setStyles:(NSMutableArray<STStyleInfo> *)tempStyles];
 }
 
 - (void)deleteStyle:(STStyleInfo *)style {
-    [_styles removeObject:style];
+    NSMutableArray *tempStyles = [[NSMutableArray alloc] initWithArray:_styles];
+    [tempStyles removeObject:style];
+    [self setStyles:(NSMutableArray<STStyleInfo> *)tempStyles];
 }
 
 - (void)deleteStyleAtIndex:(NSUInteger)index {
-    [_styles removeObjectAtIndex:index];
+    NSMutableArray *tempStyles = [[NSMutableArray alloc] initWithArray:_styles];
+    [tempStyles removeObjectAtIndex:index];
+    [self setStyles:(NSMutableArray<STStyleInfo> *)tempStyles];
 }
 
 - (void)deleteAllStyles {
-    [_styles removeAllObjects];
+    NSMutableArray *tempStyles = [[NSMutableArray alloc] initWithArray:_styles];
+    [tempStyles removeAllObjects];
+    [self setStyles:(NSMutableArray<STStyleInfo> *)tempStyles];
 }
 
 @end

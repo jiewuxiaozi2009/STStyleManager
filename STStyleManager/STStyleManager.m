@@ -33,7 +33,18 @@
     }
     if (self) {
         //add code
-        _styleManagerFilePath = jsonFilePath;
+        [self setStyleManagerFilePath:jsonFilePath];
+    }
+    
+    return self;
+}
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        //
+        [self setStyleManagerFilePath:nil];
+        [self setClassifications:[(NSMutableArray<STClassificationInfo> *)[NSMutableArray alloc] init]];
     }
     
     return self;
@@ -53,7 +64,7 @@
 }
 
 - (STClassificationInfo *)createClassificationWithName:(NSString *)classificationName {
-    STClassificationInfo *classification = [STClassificationInfo createClassificationWithName:classificationName];
+    STClassificationInfo *classification = [[STClassificationInfo alloc] initWithClassificationName:classificationName];
     if (!classification) {
         NSLog(@"create classification %@ field!", classificationName);
         return classification;
@@ -63,23 +74,33 @@
 }
 
 - (void)addClassification:(STClassificationInfo *)classification {
-    [_classifications addObject:classification];
+    NSMutableArray *tempClassifications = [[NSMutableArray alloc] initWithArray:_classifications];
+    [tempClassifications addObject:classification];
+    [self setClassifications:(NSMutableArray<STClassificationInfo> *)tempClassifications];
 }
 
 - (void)addClassification:(STClassificationInfo *)classification atIndex:(NSUInteger)index {
-    [_classifications insertObject:classification atIndex:index];
+    NSMutableArray *tempClassifications = [[NSMutableArray alloc] initWithArray:_classifications];
+    [tempClassifications insertObject:classification atIndex:index];
+    [self setClassifications:(NSMutableArray<STClassificationInfo> *)tempClassifications];
 }
 
 - (void)deleteClassification:(STClassificationInfo *)classification {
-    [_classifications removeObject:classification];
+    NSMutableArray *tempClassifications = [[NSMutableArray alloc] initWithArray:_classifications];
+    [tempClassifications removeObject:classification];
+    [self setClassifications:(NSMutableArray<STClassificationInfo> *)tempClassifications];
 }
 
 - (void)deleteClassificationAtIndex:(NSUInteger)index {
-    [_classifications removeObjectAtIndex:index];
+    NSMutableArray *tempClassifications = [[NSMutableArray alloc] initWithArray:_classifications];
+    [tempClassifications removeObjectAtIndex:index];
+    [self setClassifications:(NSMutableArray<STClassificationInfo> *)tempClassifications];
 }
 
 - (void)deleteAllClassifications {
-    [_classifications removeAllObjects];
+    NSMutableArray *tempClassifications = [[NSMutableArray alloc] initWithArray:_classifications];
+    [tempClassifications removeAllObjects];
+    [self setClassifications:(NSMutableArray<STClassificationInfo> *)tempClassifications];
 }
 
 - (NSArray *)allStylesFromeClassificationIndex:(NSUInteger)classificationIndex {
@@ -93,9 +114,9 @@
 - (STStyleInfo *)createStyleWithName:(NSString *)styleName
                   styleImageFilePath:(NSString *)styleImageFilePath
                        algorithmType:(NSInteger)algorithmType {
-    STStyleInfo *style = [STStyleInfo createStyleWithName:styleName
-                                       styleImageFilePath:styleImageFilePath
-                                            algorithmType:algorithmType];
+    STStyleInfo *style = [[STStyleInfo alloc] initWithName:styleName
+                                        styleImageFilePath:styleImageFilePath
+                                             algorithmType:algorithmType];
     if (!style) {
         NSLog(@"create style field!");
         return style;
@@ -110,10 +131,6 @@
 
 - (void)addStyle:(STStyleInfo *)style atIndex:(NSUInteger)styleIndex toClassificationIndex:(NSUInteger)classificationIndex {
     [[_classifications objectAtIndex:classificationIndex] addStyle:style atIndex:styleIndex];
-}
-
-- (void)setStyles:(NSMutableArray *)styles toClassificationIndex:(NSUInteger)classificationIndex {
-    [[_classifications objectAtIndex:classificationIndex] setStyles:styles];
 }
 
 - (void)deleteStyle:(STStyleInfo *)style fromClassificationIndex:(NSUInteger)classificationIndex {

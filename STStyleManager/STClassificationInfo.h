@@ -14,9 +14,6 @@
 @interface STClassificationInfo : JSONModel
 
 @property (nonatomic, readonly, copy) NSString *name;
-@property (nonatomic, copy) NSMutableArray<STStyleInfo> *styles;
-
-+ (STClassificationInfo *)createClassificationWithName:(NSString *)classificationName;
 
 - (instancetype)initWithClassificationName:(NSString *)classificationName;
 

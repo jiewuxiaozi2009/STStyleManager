@@ -10,6 +10,7 @@
 
 #import "STClassificationInfo.h"
 #import "STStyleInfo.h"
+#import "STModelPara.h"
 
 @interface STStyleManager : JSONModel
 
@@ -48,7 +49,6 @@
 //添加一个风格到风格管理器中的指定分类
 - (void)addStyle:(STStyleInfo *)style toClassificationIndex:(NSUInteger)index;
 - (void)addStyle:(STStyleInfo *)style atIndex:(NSUInteger)styleIndex toClassificationIndex:(NSUInteger)classificationIndex;
-- (void)setStyles:(NSMutableArray *)styles toClassificationIndex:(NSUInteger)classificationIndex;
 
 //从风格管理器中的指定分类下删除风格
 - (void)deleteStyle:(STStyleInfo *)style fromClassificationIndex:(NSUInteger)classificationIndex;

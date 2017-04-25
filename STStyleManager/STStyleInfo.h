@@ -16,10 +16,9 @@
 
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *iconFileName;
-@property (nonatomic, assign) BOOL isAddButton;
-@property (nonatomic, assign) BOOL isHideRemove;
-@property (nonatomic, assign) BOOL isHideFavorite;
-@property (nonatomic, assign) BOOL isFavorite;
+@property (nonatomic, assign) BOOL isCustomStyle;
+@property (nonatomic, assign) BOOL isAddStyleButton;
+@property (nonatomic, assign) BOOL isFavoriteStyle;
 @property (nonatomic, copy) NSString *modelName;
 @property (nonatomic, copy) NSString *styleImageName;
 @property (nonatomic, assign) NSUInteger styleId;
@@ -29,8 +28,8 @@
 @property (nonatomic, copy) NSString<Ignore> *styleImagePath;
 @property (nonatomic, strong) NSImage<Ignore> *iconImage;
 
-+ (STStyleInfo *)createStyleWithName:(NSString *)styleName
-                  styleImageFilePath:(NSString *)styleImageFilePath
-                       algorithmType:(NSInteger)algorithmType;
+- (instancetype)initWithName:(NSString *)styleName
+          styleImageFilePath:(NSString *)styleImageFilePath
+               algorithmType:(NSInteger)algorithmType;
 
 @end

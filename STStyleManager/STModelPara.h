@@ -15,5 +15,10 @@
 @property (nonatomic, strong) NSNumber *defaultValue;
 @property (nonatomic, copy) NSString *valueType;
 
+- (instancetype)initWithName:(NSString *)name
+                       value:(NSNumber *)value
+                defaultValue:(NSNumber *)defaultValue
+                   valueType:(NSString *)valueType;
+
 @end
 

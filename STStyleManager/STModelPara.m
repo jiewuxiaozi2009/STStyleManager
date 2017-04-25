@@ -10,4 +10,24 @@
 
 @implementation STModelPara
 
+- (instancetype)initWithName:(NSString *)name
+                       value:(NSNumber *)value
+                defaultValue:(NSNumber *)defaultValue
+                   valueType:(NSString *)valueType {
+    self = [super init];
+    if (self) {
+        //
+        [self setName:name];
+        [self setValue:value];
+        [self setDefaultValue:defaultValue];
+        [self setValueType:valueType];
+    }
+    
+    return self;
+}
+
+- (void)dealloc {
+    
+}
+
 @end

@@ -16,6 +16,8 @@
 		ED4270461EA6FE3B00643A16 /* STStyleInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = ED4270441EA6FE3B00643A16 /* STStyleInfo.m */; };
 		ED4270491EA6FE4B00643A16 /* STModelPara.h in Headers */ = {isa = PBXBuildFile; fileRef = ED4270471EA6FE4B00643A16 /* STModelPara.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ED42704A1EA6FE4B00643A16 /* STModelPara.m in Sources */ = {isa = PBXBuildFile; fileRef = ED4270481EA6FE4B00643A16 /* STModelPara.m */; };
+		ED46E3021EAF2E4700763809 /* STCommonFunction.h in Headers */ = {isa = PBXBuildFile; fileRef = ED46E3001EAF2E4700763809 /* STCommonFunction.h */; };
+		ED46E3031EAF2E4700763809 /* STCommonFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = ED46E3011EAF2E4700763809 /* STCommonFunction.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		ED4270441EA6FE3B00643A16 /* STStyleInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STStyleInfo.m; sourceTree = "<group>"; };
 		ED4270471EA6FE4B00643A16 /* STModelPara.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STModelPara.h; sourceTree = "<group>"; };
 		ED4270481EA6FE4B00643A16 /* STModelPara.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STModelPara.m; sourceTree = "<group>"; };
+		ED46E3001EAF2E4700763809 /* STCommonFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STCommonFunction.h; sourceTree = "<group>"; };
+		ED46E3011EAF2E4700763809 /* STCommonFunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STCommonFunction.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +85,8 @@
 		ED4270341EA6FD0000643A16 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				ED46E3001EAF2E4700763809 /* STCommonFunction.h */,
+				ED46E3011EAF2E4700763809 /* STCommonFunction.m */,
 				ED42703B1EA6FE0D00643A16 /* STStyleManager.h */,
 				ED42703C1EA6FE0D00643A16 /* STStyleManager.m */,
 				ED42703F1EA6FE2A00643A16 /* STClassificationInfo.h */,
@@ -103,6 +109,7 @@
 				ED4270451EA6FE3B00643A16 /* STStyleInfo.h in Headers */,
 				ED42703D1EA6FE0D00643A16 /* STStyleManager.h in Headers */,
 				ED4270411EA6FE2A00643A16 /* STClassificationInfo.h in Headers */,
+				ED46E3021EAF2E4700763809 /* STCommonFunction.h in Headers */,
 				ED4270491EA6FE4B00643A16 /* STModelPara.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -178,6 +185,7 @@
 				ED42704A1EA6FE4B00643A16 /* STModelPara.m in Sources */,
 				ED4270461EA6FE3B00643A16 /* STStyleInfo.m in Sources */,
 				ED4270421EA6FE2A00643A16 /* STClassificationInfo.m in Sources */,
+				ED46E3031EAF2E4700763809 /* STCommonFunction.m in Sources */,
 				ED42703E1EA6FE0D00643A16 /* STStyleManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
