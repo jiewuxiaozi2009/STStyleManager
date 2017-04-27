@@ -49,4 +49,35 @@
     return styleResourceDir;
 }
 
++ (void)saveImage:(NSImage *)image toPath:(NSString *)path type:(NSBitmapImageFileType)type {
+    if (image) {
+        NSData *imageData = [image TIFFRepresentation];
+        NSBitmapImageRep *imageRep = [NSBitmapImageRep imageRepWithData:imageData];
+        switch (type) {
+            case NSBitmapImageFileTypePNG: {
+                imageData = [imageRep representationUsingType:type properties:nil];
+                break;
+            }
+            case NSBitmapImageFileTypeJPEG: {
+                NSDictionary *imageProps = nil;
+                NSNumber *quality = [NSNumber numberWithFloat:1.0];
+                imageProps = [NSDictionary dictionaryWithObject:quality forKey:NSImageCompressionFactor];
+                imageData = [imageRep representationUsingType:type properties:imageProps];
+                break;
+            }
+            case NSBitmapImageFileTypeTIFF: {
+                break;
+            }
+                
+            default:
+                break;
+        }
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        if ([fileManager fileExistsAtPath:path]) {
+            [fileManager removeItemAtPath:path error:nil];
+        }
+        [imageData writeToFile:path atomically:YES];
+    }
+}
+
 @end

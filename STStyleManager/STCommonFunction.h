@@ -6,7 +6,7 @@
 //  Copyright © 2017 Lorne Shi. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <Cocoa/Cocoa.h>
 
 @interface STCommonFunction : NSObject
 
@@ -16,5 +16,7 @@
 
 + (NSString *)styleResourceDir:(BOOL)isCustomStyle;
 + (NSString *)customStyleManagerFileDir;
+
++ (void)saveImage:(NSImage *)image toPath:(NSString *)path type:(NSBitmapImageFileType)type;
 
 @end
