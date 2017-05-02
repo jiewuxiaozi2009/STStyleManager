@@ -33,6 +33,8 @@
         [self setStyleImageName:styleImageFileNameTmp];
         [self setStyleId:0];
         [self setAlgorithmType:algorithmType];
+        [self setBeforeFilterIndex:0];
+        [self setAfterFilterIndex:0];
         
         //TODO:需要根据风格转换模块动态获取参数信息
         NSMutableArray *modelParas = [[NSMutableArray alloc] init];

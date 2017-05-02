@@ -23,6 +23,8 @@
 @property (nonatomic, copy) NSString *styleImageName;
 @property (nonatomic, assign) NSUInteger styleId;
 @property (nonatomic, assign) NSUInteger algorithmType;
+@property (nonatomic, assign) NSUInteger beforeFilterIndex;
+@property (nonatomic, assign) NSUInteger afterFilterIndex;
 @property (nonatomic, copy) NSMutableArray<STModelPara> *modelParas;
 @property (nonatomic, copy) NSString<Ignore> *modelPath;
 @property (nonatomic, copy) NSString<Ignore> *styleImagePath;
