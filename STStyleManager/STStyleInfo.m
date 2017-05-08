@@ -131,7 +131,7 @@
     
     //创建风格图片文件
     NSImage *originalStyleImage = [[NSImage alloc] initWithContentsOfFile:srcStyleImageFilePath];
-    [STCommonFunction saveImage:originalStyleImage toPath:[self styleImagePath] type:NSBitmapImageFileTypePNG];
+    [STCommonFunction saveImage:originalStyleImage toPath:[self styleImagePath] type:NSPNGFileType];
     
     //创建风格icon文件
     //TODO:目前先用风格图片代替，后期需要缩放裁剪处理

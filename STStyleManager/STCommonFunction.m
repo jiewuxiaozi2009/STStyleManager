@@ -54,18 +54,18 @@
         NSData *imageData = [image TIFFRepresentation];
         NSBitmapImageRep *imageRep = [NSBitmapImageRep imageRepWithData:imageData];
         switch (type) {
-            case NSBitmapImageFileTypePNG: {
+            case NSPNGFileType: {
                 imageData = [imageRep representationUsingType:type properties:nil];
                 break;
             }
-            case NSBitmapImageFileTypeJPEG: {
+            case NSJPEGFileType: {
                 NSDictionary *imageProps = nil;
                 NSNumber *quality = [NSNumber numberWithFloat:1.0];
                 imageProps = [NSDictionary dictionaryWithObject:quality forKey:NSImageCompressionFactor];
                 imageData = [imageRep representationUsingType:type properties:imageProps];
                 break;
             }
-            case NSBitmapImageFileTypeTIFF: {
+            case NSTIFFFileType: {
                 break;
             }
                 
