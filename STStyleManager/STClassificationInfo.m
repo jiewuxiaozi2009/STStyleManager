@@ -7,6 +7,8 @@
 //
 
 #import "STClassificationInfo.h"
+#import "STStyleInfo.h"
+#import "STCommonFunction.h"
 
 @interface STClassificationInfo ()
 
@@ -50,12 +52,14 @@
 - (void)deleteStyle:(STStyleInfo *)style {
     NSMutableArray *tempStyles = [[NSMutableArray alloc] initWithArray:_styles];
     [tempStyles removeObject:style];
+    [self deleteStyleResourceWithStyle:style];
     [self setStyles:(NSMutableArray<STStyleInfo> *)tempStyles];
 }
 
 - (void)deleteStyleAtIndex:(NSUInteger)index {
     NSMutableArray *tempStyles = [[NSMutableArray alloc] initWithArray:_styles];
     [tempStyles removeObjectAtIndex:index];
+    [self deleteStyleResourceWithStyle:[_styles objectAtIndex:index]];
     [self setStyles:(NSMutableArray<STStyleInfo> *)tempStyles];
 }
 
@@ -63,6 +67,17 @@
     NSMutableArray *tempStyles = [[NSMutableArray alloc] initWithArray:_styles];
     [tempStyles removeAllObjects];
     [self setStyles:(NSMutableArray<STStyleInfo> *)tempStyles];
+}
+
+- (void)deleteStyleResourceWithStyle:(STStyleInfo *)style {
+    if ([style isCustomStyle]) {
+        NSLog(@"删除 %@ 图片资源", [style name]);
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        [fileManager removeItemAtPath:[style styleImagePath] error:nil];
+        NSString *styleIconFileDir = [STCommonFunction styleIconFileDir:[style isCustomStyle]];
+        NSString *styleIconFilePath = [NSString stringWithFormat:@"%@/%@", styleIconFileDir, [style styleImagePath]];
+        [fileManager removeItemAtPath:styleIconFilePath error:nil];
+    }
 }
 
 @end

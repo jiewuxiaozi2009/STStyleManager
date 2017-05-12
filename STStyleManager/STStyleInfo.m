@@ -141,14 +141,7 @@
 }
 
 - (void)dealloc {
-    //删除资源
-    if ([self isCustomStyle]) {
-        NSFileManager *fileManager = [NSFileManager defaultManager];
-        [fileManager removeItemAtPath:[self styleImagePath] error:nil];
-        NSString *styleIconFileDir = [STCommonFunction styleIconFileDir:[self isCustomStyle]];
-        NSString *styleIconFilePath = [NSString stringWithFormat:@"%@/%@", styleIconFileDir, _iconFileName];
-        [fileManager removeItemAtPath:styleIconFilePath error:nil];
-    }
+    
 }
 
 @end
