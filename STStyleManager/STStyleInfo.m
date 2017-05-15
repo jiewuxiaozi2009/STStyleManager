@@ -31,6 +31,7 @@
         [self setIsAddStyleButton:false];
         [self setIsFavoriteStyle:false];
         [self setStyleImageName:styleImageFileNameTmp];
+        [self setStyleFeatureDesName:nil];
         [self setStyleId:0];
         [self setAlgorithmType:algorithmType];
         [self setBeforeFilterIndex:0];
@@ -112,6 +113,15 @@
     }
 
     return _styleImagePath;
+}
+
+- (NSString<Ignore> *)styleFeatureDesFilePath {
+    if (!_styleFeatureDesFilePath) {
+        NSString *styleImageFileDir = [STCommonFunction styleImageFileDir:[self isCustomStyle]];
+        _styleFeatureDesFilePath = [NSString stringWithFormat:@"%@/%@", styleImageFileDir, _styleFeatureDesName];
+    }
+    
+    return _styleFeatureDesFilePath;
 }
 
 - (void)createStyleResourceFromSrcStyleImageFilePath:(NSString *)srcStyleImageFilePath {

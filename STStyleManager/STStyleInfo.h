@@ -21,6 +21,7 @@
 @property (nonatomic, assign) BOOL isFavoriteStyle;
 @property (nonatomic, copy) NSString *modelName;
 @property (nonatomic, copy) NSString *styleImageName;
+@property (nonatomic, copy) NSString<Optional> *styleFeatureDesName;
 @property (nonatomic, assign) NSUInteger styleId;
 @property (nonatomic, assign) NSUInteger algorithmType;
 @property (nonatomic, assign) NSUInteger beforeFilterIndex;
@@ -28,6 +29,7 @@
 @property (nonatomic, copy) NSMutableArray<STModelPara> *modelParas;
 @property (nonatomic, copy) NSString<Ignore> *modelPath;
 @property (nonatomic, copy) NSString<Ignore> *styleImagePath;
+@property (nonatomic, copy) NSString<Ignore> *styleFeatureDesFilePath;
 @property (nonatomic, strong) NSImage<Ignore> *iconImage;
 
 - (instancetype)initWithName:(NSString *)styleName
