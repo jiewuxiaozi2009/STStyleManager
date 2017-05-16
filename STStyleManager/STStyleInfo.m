@@ -53,6 +53,11 @@
                                                                       defaultValue:[[NSNumber alloc] initWithInt:0]
                                                                          valueType:@"AV_INT"];
                 [modelParas addObject:paraPreserveColor];
+                STModelPara *paraDensity = [[STModelPara alloc] initWithName:@"density"
+                                                                             value:[[NSNumber alloc] initWithInt:0]
+                                                                      defaultValue:[[NSNumber alloc] initWithInt:0]
+                                                                         valueType:@"AV_FLOAT"];
+                [modelParas addObject:paraDensity];
                 break;
             }
             case 1: {//慢速任意风格迁移模型，有两个参数
