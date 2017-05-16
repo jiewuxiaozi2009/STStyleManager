@@ -9,6 +9,7 @@
 #import <JSONModel/JSONModel.h>
 
 #import "STClassificationInfo.h"
+#import "STCommonFunction.h"
 #import "STStyleInfo.h"
 #import "STModelPara.h"
 

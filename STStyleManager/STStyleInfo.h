@@ -19,6 +19,7 @@
 @property (nonatomic, assign) BOOL isCustomStyle;
 @property (nonatomic, assign) BOOL isAddStyleButton;
 @property (nonatomic, assign) BOOL isFavoriteStyle;
+@property (nonatomic, assign) BOOL isRecommendStyle;
 @property (nonatomic, copy) NSString *modelName;
 @property (nonatomic, copy) NSString *styleImageName;
 @property (nonatomic, copy) NSString<Optional> *styleFeatureDesName;

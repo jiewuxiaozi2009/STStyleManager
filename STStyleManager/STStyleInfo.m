@@ -30,6 +30,7 @@
         [self setIsCustomStyle:true];
         [self setIsAddStyleButton:false];
         [self setIsFavoriteStyle:false];
+        [self setIsRecommendStyle:false];
         [self setStyleImageName:styleImageFileNameTmp];
         [self setStyleFeatureDesName:nil];
         [self setStyleId:0];
