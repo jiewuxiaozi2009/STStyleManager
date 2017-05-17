@@ -17,6 +17,6 @@
 + (NSString *)styleResourceDir:(BOOL)isCustomStyle;
 + (NSString *)customStyleManagerFileDir;
 
-+ (void)saveImage:(NSImage *)image toPath:(NSString *)path type:(NSBitmapImageFileType)type;
++ (BOOL)saveImage:(NSImage *)image toPath:(NSString *)path type:(NSBitmapImageFileType)type;
 
 @end

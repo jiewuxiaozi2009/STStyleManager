@@ -49,7 +49,8 @@
     return styleResourceDir;
 }
 
-+ (void)saveImage:(NSImage *)image toPath:(NSString *)path type:(NSBitmapImageFileType)type {
++ (BOOL)saveImage:(NSImage *)image toPath:(NSString *)path type:(NSBitmapImageFileType)type {
+    BOOL result = NO;
     if (image) {
         NSData *imageData = [image TIFFRepresentation];
         NSBitmapImageRep *imageRep = [NSBitmapImageRep imageRepWithData:imageData];
@@ -76,8 +77,10 @@
         if ([fileManager fileExistsAtPath:path]) {
             [fileManager removeItemAtPath:path error:nil];
         }
-        [imageData writeToFile:path atomically:YES];
+        result = [imageData writeToFile:path atomically:YES];
     }
+    
+    return result;
 }
 
 @end

@@ -19,6 +19,11 @@
 - (instancetype)initWithName:(NSString *)styleName
           styleImageFilePath:(NSString *)styleImageFilePath
                algorithmType:(NSInteger)algorithmType {
+    if (styleName == nil ||
+        styleImageFilePath == nil) {
+        return nil;
+    }
+    
     self = [super init];
     if (self) {
         //
@@ -87,7 +92,12 @@
         [self setModelParas:(NSMutableArray<STModelPara> *)modelParas];
         
         //创建资源
-        [self createStyleResourceFromSrcStyleImageFilePath:styleImageFilePath];
+        BOOL result = FALSE;
+        result = [self createStyleResourceFromSrcStyleImageFilePath:styleImageFilePath];
+        if (!result) {
+            NSLog(@"资源创建失败！");
+            return nil;
+        }
     }
     
     return self;
@@ -130,7 +140,7 @@
     return _styleFeatureDesFilePath;
 }
 
-- (void)createStyleResourceFromSrcStyleImageFilePath:(NSString *)srcStyleImageFilePath {
+- (BOOL)createStyleResourceFromSrcStyleImageFilePath:(NSString *)srcStyleImageFilePath {
     NSFileManager *fileManager = [NSFileManager defaultManager];
     //创建自定义风格的资源文件目录
     NSError *error = nil;
@@ -147,13 +157,19 @@
     
     //创建风格图片文件
     NSImage *originalStyleImage = [[NSImage alloc] initWithContentsOfFile:srcStyleImageFilePath];
-    [STCommonFunction saveImage:originalStyleImage toPath:[self styleImagePath] type:NSPNGFileType];
+    resulet = [STCommonFunction saveImage:originalStyleImage toPath:[self styleImagePath] type:NSPNGFileType];
     
     //创建风格icon文件
     //TODO:目前先用风格图片代替，后期需要缩放裁剪处理
     NSString *styleIconFileDir = [STCommonFunction styleIconFileDir:[self isCustomStyle]];
     NSString *styleIconFilePath = [NSString stringWithFormat:@"%@/%@", styleIconFileDir, _iconFileName];
     [fileManager copyItemAtPath:[self styleImagePath] toPath:styleIconFilePath error:nil];
+    
+    if (resulet && error == nil) {
+        resulet = TRUE;
+    }
+    
+    return resulet;
 }
 
 - (void)dealloc {
