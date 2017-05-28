@@ -28,8 +28,8 @@
     if (self) {
         //
         NSString *styleNameAtNoSpace = [styleName stringByReplacingOccurrencesOfString:@" " withString:@""];
-        NSString *iconFileNameTmp = [NSString stringWithFormat:@"%@_icon.png", styleNameAtNoSpace];
-        NSString *styleImageFileNameTmp = [NSString stringWithFormat:@"%@.png",styleNameAtNoSpace];
+        NSString *iconFileNameTmp = [NSString stringWithFormat:@"st_%@_icon.png", styleNameAtNoSpace];
+        NSString *styleImageFileNameTmp = [NSString stringWithFormat:@"st_%@.png",styleNameAtNoSpace];
         [self setName:styleName];
         [self setIconFileName:iconFileNameTmp];
         [self setIsCustomStyle:true];
@@ -40,8 +40,8 @@
         [self setStyleFeatureDesName:nil];
         [self setStyleId:0];
         [self setAlgorithmType:algorithmType];
-        [self setBeforeFilterIndex:0];
-        [self setAfterFilterIndex:0];
+        [self setBeforeFilterIndex:-1];
+        [self setAfterFilterIndex:-1];
         
         //TODO:需要根据风格转换模块动态获取参数信息
         NSMutableArray *modelParas = [[NSMutableArray alloc] init];
