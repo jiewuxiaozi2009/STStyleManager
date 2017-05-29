@@ -30,6 +30,7 @@
         NSString *styleNameAtNoSpace = [styleName stringByReplacingOccurrencesOfString:@" " withString:@""];
         NSString *iconFileNameTmp = [NSString stringWithFormat:@"st_%@_icon.png", styleNameAtNoSpace];
         NSString *styleImageFileNameTmp = [NSString stringWithFormat:@"st_%@.png",styleNameAtNoSpace];
+        NSString *styleFeatureDesNameTmp = [NSString stringWithFormat:@"st_%@.t7",styleNameAtNoSpace];
         [self setName:styleName];
         [self setIconFileName:iconFileNameTmp];
         [self setIsCustomStyle:true];
@@ -37,7 +38,7 @@
         [self setIsFavoriteStyle:false];
         [self setIsRecommendStyle:false];
         [self setStyleImageName:styleImageFileNameTmp];
-        [self setStyleFeatureDesName:nil];
+        [self setStyleFeatureDesName:styleFeatureDesNameTmp];
         [self setStyleId:0];
         [self setAlgorithmType:algorithmType];
         [self setBeforeFilterIndex:-1];
@@ -174,6 +175,27 @@
 
 - (void)dealloc {
     
+}
+
+- (void)deleteStyleResource {
+    if ([self isCustomStyle]) {
+        NSError *error = nil;
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        BOOL result = [fileManager removeItemAtPath:[self styleImagePath] error:&error];
+        if (!result && error != nil) {
+            NSLog(@"删除风格图片文件失败！---path = %@", [self styleImagePath]);
+        }
+        result = [fileManager removeItemAtPath:[self styleFeatureDesFilePath] error:&error];
+        if (!result && error != nil) {
+            NSLog(@"删除风格图片特征信息文件失败！---path = %@", [self styleFeatureDesFilePath]);
+        }
+        NSString *styleIconFileDir = [STCommonFunction styleIconFileDir:[self isCustomStyle]];
+        NSString *styleIconFilePath = [NSString stringWithFormat:@"%@/%@", styleIconFileDir, [self iconFileName]];
+        result = [fileManager removeItemAtPath:styleIconFilePath error:&error];
+        if (!result && error != nil) {
+            NSLog(@"删除风格图片特征信息文件失败！---path = %@", styleIconFilePath);
+        }
+    }
 }
 
 @end

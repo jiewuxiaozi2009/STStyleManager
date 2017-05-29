@@ -37,4 +37,6 @@
           styleImageFilePath:(NSString *)styleImageFilePath
                algorithmType:(NSInteger)algorithmType;
 
+- (void)deleteStyleResource;
+
 @end
