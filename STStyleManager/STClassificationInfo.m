@@ -13,6 +13,7 @@
 @interface STClassificationInfo ()
 
 @property (nonatomic, copy) NSString *name;
+@property (nonatomic, assign) NSInteger hotClassificationIndex;
 @property (nonatomic, copy) NSMutableArray<STStyleInfo> *styles;
 
 @end
@@ -24,6 +25,7 @@
     if (self) {
         [self setStyles:(NSMutableArray<STStyleInfo> *)[[NSMutableArray alloc] init]];
         [self setName:classificationName];
+        [self setHotClassificationIndex:-1];
     }
     
     return self;

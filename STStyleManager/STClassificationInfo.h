@@ -14,6 +14,7 @@
 @interface STClassificationInfo : JSONModel
 
 @property (nonatomic, readonly, copy) NSString *name;
+@property (nonatomic, readonly, assign) NSInteger hotClassificationIndex;
 
 - (instancetype)initWithClassificationName:(NSString *)classificationName;
 
