@@ -55,15 +55,15 @@
                                                               defaultValue:[[NSNumber alloc] initWithFloat:1.0]
                                                                  valueType:@"AV_FLOAT"];
                 [modelParas addObject:paraAlpha];
+                STModelPara *paraDensity = [[STModelPara alloc] initWithName:@"density"
+                                                                             value:[[NSNumber alloc] initWithFloat:0.7]
+                                                                      defaultValue:[[NSNumber alloc] initWithFloat:0.7]
+                                                                         valueType:@"AV_FLOAT"];
                 STModelPara *paraPreserveColor = [[STModelPara alloc] initWithName:@"preserveColor"
                                                                              value:[[NSNumber alloc] initWithInt:0]
                                                                       defaultValue:[[NSNumber alloc] initWithInt:0]
                                                                          valueType:@"AV_INT"];
                 [modelParas addObject:paraPreserveColor];
-                STModelPara *paraDensity = [[STModelPara alloc] initWithName:@"density"
-                                                                             value:[[NSNumber alloc] initWithInt:0]
-                                                                      defaultValue:[[NSNumber alloc] initWithInt:0]
-                                                                         valueType:@"AV_FLOAT"];
                 [modelParas addObject:paraDensity];
                 break;
             }
