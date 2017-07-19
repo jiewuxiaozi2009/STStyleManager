@@ -18,5 +18,6 @@
 + (NSString *)customStyleManagerFileDir;
 
 + (BOOL)saveImage:(NSImage *)image toPath:(NSString *)path type:(NSBitmapImageFileType)type;
++ (NSImage *)scaleImage:(NSImage *)image toSize:(NSSize)size;
 
 @end

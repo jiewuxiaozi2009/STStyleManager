@@ -83,4 +83,107 @@
     return result;
 }
 
++ (CGContextRef)newBitmapContextFromImageRef:(CGImageRef)imageRef
+                                   scaleSize:(NSSize)size
+                                     isScale:(BOOL)isScale {
+    CGContextRef context = NULL;
+    CGColorSpaceRef colorSpace = NULL;
+    uint32_t *bitmapData = NULL;
+    
+    size_t bitsPerComponent = CGImageGetBitsPerComponent(imageRef);
+    size_t bitsPerPixel = 4 * bitsPerComponent;
+    size_t bytesPerPixel = bitsPerPixel / bitsPerComponent;
+    size_t width = CGImageGetWidth(imageRef);
+    size_t height = CGImageGetHeight(imageRef);
+    if (isScale) {
+        width = size.width;
+        height = size.height;
+    }
+    size_t bytesperRow = width * bytesPerPixel;
+    size_t bufferLength = bytesperRow * height;
+    
+    colorSpace = CGColorSpaceCreateDeviceRGB();
+    
+    if(!colorSpace) {
+        NSLog(@"Error allocating color space\n");
+        return NULL;
+    }
+    
+    // Allocate memory for image data
+    bitmapData = (uint32_t *)malloc(bufferLength);
+    
+    if(!bitmapData) {
+        NSLog(@"Error allocating memory for bitmap\n");
+        CGColorSpaceRelease(colorSpace);
+        return NULL;
+    }
+    
+    //Create bitmap context
+    context = CGBitmapContextCreate(bitmapData,
+                                    width,
+                                    height,
+                                    bitsPerComponent,
+                                    bytesperRow,
+                                    colorSpace,
+                                    kCGImageAlphaPremultipliedLast| kCGBitmapByteOrder32Big);
+    if(!context) {
+        free(bitmapData);
+        NSLog(@"Bitmap context not created");
+    }
+    
+    CGColorSpaceRelease(colorSpace);
+    
+    return context;
+}
+
++ (NSImage *)scaleImage:(NSImage *)image toSize:(NSSize)size {
+    CGImageRef imageRef = [image CGImageForProposedRect:NULL context:NULL hints:NULL];
+    CGFloat srcWidth = CGImageGetWidth(imageRef);
+    CGFloat srcHeight = CGImageGetHeight(imageRef);
+    
+    float verticalRadio = size.height * 1.0 / srcHeight;
+    float horizontalRadio = size.width * 1.0 / srcWidth;
+    
+    float radio = 1;
+    if(verticalRadio > 1 && horizontalRadio > 1) {
+        radio = verticalRadio > horizontalRadio ? horizontalRadio : verticalRadio;
+    } else {
+        radio = verticalRadio < horizontalRadio ? verticalRadio : horizontalRadio;
+    }
+    
+    NSUInteger destWidth = srcWidth * radio;
+    NSUInteger destHeight = srcHeight * radio;
+    
+    CGContextRef context = [self newBitmapContextFromImageRef:imageRef
+                                                    scaleSize:CGSizeMake(destWidth, destHeight)
+                                                      isScale:YES];
+    CGContextDrawImage(context, CGRectMake(0.0, 0.0, destWidth, destHeight), imageRef);
+    //获取CGContextRef中的rawdata的指针
+    unsigned char *bitmapData = (unsigned char *)CGBitmapContextGetData(context);
+    size_t bufferLength = destWidth * destHeight * 4;
+    CGDataProviderRef provider = CGDataProviderCreateWithData(NULL, bitmapData, bufferLength, NULL);
+    size_t bitsPerComponent = 8;
+    size_t bitsPerPixel = 32;
+    size_t bytesPerRow = 4 * destWidth;
+    CGColorSpaceRef colorSpaceRef = CGColorSpaceCreateDeviceRGB();
+    CGBitmapInfo bitmapInfo = kCGImageAlphaPremultipliedLast| kCGBitmapByteOrder32Big;
+    CGColorRenderingIntent renderingIntent = kCGRenderingIntentDefault;
+    
+    CGImageRef iref = CGImageCreate(destWidth,
+                                    destHeight,
+                                    bitsPerComponent,
+                                    bitsPerPixel,
+                                    bytesPerRow,
+                                    colorSpaceRef,
+                                    bitmapInfo,
+                                    provider,   // data provider
+                                    NULL,       // decode
+                                    YES,        // should interpolate
+                                    renderingIntent);
+    
+    NSImage *outimage = [[NSImage alloc] initWithCGImage:iref size:NSMakeSize(destWidth, destHeight)];
+    
+    return outimage;
+}
+
 @end

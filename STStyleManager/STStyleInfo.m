@@ -158,7 +158,11 @@
     
     //创建风格图片文件
     NSImage *originalStyleImage = [[NSImage alloc] initWithContentsOfFile:srcStyleImageFilePath];
-    resulet = [STCommonFunction saveImage:originalStyleImage toPath:[self styleImagePath] type:NSPNGFileType];
+    NSImage *zoomStyleImage512 = originalStyleImage;
+    if (MAX(originalStyleImage.size.width, originalStyleImage.size.height) > 512.0) {
+        zoomStyleImage512 = [STCommonFunction scaleImage:originalStyleImage toSize:NSMakeSize(512.0, 512.0)];
+    }
+    resulet = [STCommonFunction saveImage:zoomStyleImage512 toPath:[self styleImagePath] type:NSPNGFileType];
     
     //创建风格icon文件
     //TODO:目前先用风格图片代替，后期需要缩放裁剪处理

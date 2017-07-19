@@ -271,8 +271,7 @@ DEPRECATED_ATTRIBUTE
  *   }
  * }
  */
-+ (Class)classForCollectionProperty:(NSString *)propertyName;
-//NS_SWIFT_NAME(classForCollectionProperty(propertyName:));
++ (Class)classForCollectionProperty:(NSString *)propertyName;// NS_SWIFT_NAME(classForCollectionProperty(propertyName:));
 
 /**
  * Merges values from the given dictionary into the model instance.
