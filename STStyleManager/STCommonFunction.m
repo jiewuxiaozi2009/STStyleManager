@@ -56,7 +56,7 @@
         NSBitmapImageRep *imageRep = [NSBitmapImageRep imageRepWithData:imageData];
         switch (type) {
             case NSPNGFileType: {
-                imageData = [imageRep representationUsingType:type properties:nil];
+                imageData = [imageRep representationUsingType:type properties:(NSDictionary<NSBitmapImageRepPropertyKey,id> * _Nonnull)nil];
                 break;
             }
             case NSJPEGFileType: {
